@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// create a route to store the data
+Route::post('/create', [StudentsController::class, 'store']);
+
+// create a route to update the data
+Route::get('/fetch/{id}', [StudentsController::class, 'fetchStudent']);
+
+// create a route to fetch the data
+Route::get('/fetch',[StudentsController::class,'fetch']);
+
+Route::post('/update/{id}', [StudentsController::class, 'update']);
+
+Route::delete('/delete/{id}',[StudentsController::class, 'delete']);

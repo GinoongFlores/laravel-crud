@@ -38,11 +38,6 @@
                         <form action="{{ route('student.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('post')
-                            <div>
-                                <label for="image">
-                                    <input type="file" name="image">
-                                </label>
-                            </div>
                         <div>
                             <label for="first_name">First Name:</label>
                             <input type="text" class="large_font" name="first_name" placeholder="First Name">
@@ -72,7 +67,6 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Image</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
@@ -85,7 +79,6 @@
                         @foreach ($students as $student)
                             <tr>
                                 <td>{{ $student->id }}</td>
-                                <td><img src="{{ asset('uploads/students/'.$student->image) }}" alt="student image" width="50" height="50">{{ $student->image }}</td>
                                 <td>{{ $student->first_name }}</td>
                                 <td>{{ $student->last_name }}</td>
                                 <td>{{ $student->email }}</td>

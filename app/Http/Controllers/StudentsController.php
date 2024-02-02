@@ -9,7 +9,8 @@ class StudentsController extends Controller
 {
 
     public function index() {
-        return view('students.welcome');
+        $students = Students::latest()->get();
+        return view('students.welcome',['students'=>$students]);
     }
 
     public function create() {
@@ -18,13 +19,26 @@ class StudentsController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'course' => 'required'
+            'image' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:200|unique:students',
+            'course' => 'required|string|max:255',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-        $newStudent = Students::create($validatedData);
-        return redirect(route('student.index'));
+
+        $student = new Students($validatedData); // This will create a new student object
+
+        if($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/students/', $filename);
+            $student->image = $filename; // This will store the image in the image column of the students table in the database
+        }
+        $student->save(); // This will save the student object
+
+        return redirect(route('student.index'))->with('success', 'Student created successfully!');
     }
 
     public function read() {
@@ -55,43 +69,4 @@ class StudentsController extends Controller
         $student->delete();
         return redirect(route('student.index'))->with('success','Student deleted successfully!');
     }
-
-    //API
-    // public function store(Request $request) {
-    //     Students::create([
-    //     'first_name'=>$request->first_name,
-    //     'last_name'=>$request->last_name,
-    //     'email'=>$request->email,
-    //     'course'=>$request->course
-    //     ]);
-    //     return response()->json('Successfully Created');
-    // }
-
-    // public function fetch() {
-    //     return response()->json(Students::latest()->get());
-    // }
-
-    // public function fetchStudent(string $id) {
-    //     return response()->json(Students::whereId($id)->first());
-    // }
-
-    // public function update(Request $request, string $id) {
-    //     $user = Students::whereId($id)->first();
-
-    //     $user->update([
-    //         'first_name'=>$request->first_name,
-    //         'last_name'=>$request->last_name,
-    //         'email'=>$request->email,
-    //         'course'=>$request->course,
-    //     ]);
-    //     return response()->json('Update Successfully');
-    // }
-
-    // public function delete($id) {
-    //     {
-    //         Students::whereId($id)->delete();
-    //         return response()->json(("Deleted Successfully"));
-    //     }
-    // }
-
 }

@@ -14,12 +14,14 @@ use App\Http\Controllers\StudentsController;
 |
 */
 
-Route::get('/', function () {
-    return view('students.welcome');
-});
+// Route::get('/', function () {
+//     return view('students.welcome');
+// });
 
-// Route::get('/student', 'StudentsController@index')->name('students.index');
+Route::get('/', 'StudentsController@index')->name('students.index');
+
 Route::get('/student', [StudentsController::class, 'index'])->name(('student.index'));
+// show the form to create a new student
 Route::get('/student/create', [StudentsController::class, 'create'])->name(('student.create'));
 Route::post('/student', [StudentsController::class, 'store'])->name(('student.store'));
 
@@ -27,7 +29,7 @@ Route::get('/student/read', [StudentsController::class, 'read'])->name(('student
 
 // show the form to edit & update a student
 Route::get('/student/{student}/edit', [StudentsController::class, "edit"])->name(('student.edit'));
-Route::post('/student/{student}/update', [StudentsController::class, "update"])->name(('student.update'));
+Route::post('/student/{student}', [StudentsController::class, "update"])->name(('student.update'));
 
 // delete a student
 Route::delete('/student/{student}/delete', [StudentsController::class, "delete"])->name(('student.delete'));

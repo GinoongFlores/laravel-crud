@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
     <main>
-        <div class="container">
+        <div class="container_edit">
             <h1>Edit a Student</h1>
-            <div class="form">
+            <div class="form_edit">
                 <form method="post" action="{{ route('student.update', ['student'=>$student]) }}">
                     @csrf
                     @method('post')
@@ -37,7 +38,10 @@
                     value="{{ $student->course }}"
                     >
                 </div>
+                    <div style="display: flex; flex-direction: column; gap:1rem;">
                     <button type="submit" value="update">CREATE</button>
+                    <a href="{{ url('/student') }}" class="btn">BACK</a>
+                    </div>
                 </form>
             </div>
         </div>

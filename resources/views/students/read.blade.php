@@ -19,6 +19,7 @@
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Course</th>
+                        <th>Created At</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -32,6 +33,7 @@
                         <td>{{ $student->last_name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->course }}</td>
+                        <td>{{ $student->created_at }}</td>
                         <td>
                             <a href="{{ route('student.edit',['student' => $student]) }}">Edit</a>
                         </td>

@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 class StudentsController extends Controller
 {
 
+    /*
+     * Lists
+        * Arithmetic
+        * logs
+        * Graphs
+        * Unit testing
+    */
+
     public function index() {
         $students = Students::latest()->get();
         return view('students.welcome',['students'=>$students]);
@@ -19,7 +27,6 @@ class StudentsController extends Controller
 
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'image' => 'required|image|mimes:png,jpg,jpeg,gif,svg|max:2048',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:200|unique:students',
@@ -27,16 +34,7 @@ class StudentsController extends Controller
             // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
-        $student = new Students($validatedData); // This will create a new student object
-
-        if($request->hasFile('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
-            $file->move('uploads/students/', $filename);
-            $student->image = $filename; // This will store the image in the image column of the students table in the database
-        }
-        $student->save(); // This will save the student object
+        $new_Students = Students::create($validatedData);
 
         return redirect(route('student.index'))->with('success', 'Student created successfully!');
     }

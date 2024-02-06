@@ -16,24 +16,23 @@
     <body>
 
         <main>
-            <div class="container">
-                <div class="student_container">
+            <div class="student_container" style="{{ (session()->has('success') || $errors->any()) ? 'display: block' : 'display: none' }}">
                 <div class="student_message">
-                    <div class="student_message">
-                        @if (session()->has('success'))
-                            <p class="success">
-                                Success:{{ session('success') }}
-                            </p>
-                        @endif
-                    </div>
-                    <div class="error_message">
-                        @foreach ($errors->all() as $error)
-                            <p class="error">
-                                Invalid: {{ $error }}
-                                </p>
-                            @endforeach
-                    </div>
+                    @if (session()->has('success'))
+                        <p class="success">
+                            Success:{{ session('success') }}
+                        </p>
+                    @endif
                 </div>
+                <div class="error_message">
+                    @foreach ($errors->all() as $error)
+                        <p class="error">
+                            Invalid: {{ $error }}
+                            </p>
+                        @endforeach
+                </div>
+        </div>
+            <div class="container">
                 <div class="create_student">
                         <form action="{{ route('student.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
@@ -58,9 +57,15 @@
                             <input type="course" name="course" placeholder="BS Information Technology">
                         </div>
                             <button type="submit">CREATE</button>
+                        <br>
+                        <br>
                         </form>
+                        <a href="{{ url('/grade/create') }}">
+                            <button>
+                                CALCULATE GRADE AVERAGE
+                                </button>
+                        </a>
                 </div>
-            </div>
                 {{-- read students --}}
                 <div class="read_students">
                     <table id="studentsTable">
@@ -71,6 +76,7 @@
                                 <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Course</th>
+                                <th>Created At</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -83,6 +89,7 @@
                                 <td>{{ $student->last_name }}</td>
                                 <td>{{ $student->email }}</td>
                                 <td>{{ $student->course }}</td>
+                                <td>{{ $student->created_at->format('Y-m-d h:i:s A') }}</td>
                                 <td>
                                     <a href="{{ route('student.edit',['student' => $student]) }}" class="edit_btn">Edit</a>
                                 </td>
@@ -98,15 +105,6 @@
                         @endforeach
                     </table>
                 </div>
-
-                {{-- <div class="card">
-                    <h1>Laravel CRUD - MVC</h2>
-                    <button id="btn-create">CREATE</button>
-                    <button id="btn-read">READ</button>
-                    <button id="btn-update">UPDATE</button>
-                    <button id="btn-delete">DELETE</button>
-
-                </div> --}}
             </div>
         </main>
 

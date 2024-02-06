@@ -40,7 +40,7 @@
                 </div>
                     <div style="display: flex; flex-direction: column; gap:1rem;">
                     <button type="submit" value="update">UPDATE</button>
-                    <a href="{{ url('/student') }}" class="btn">BACK</a>
+                    <a href="{{ url('/') }}" class="btn">BACK</a>
                     </div>
                 </form>
             </div>

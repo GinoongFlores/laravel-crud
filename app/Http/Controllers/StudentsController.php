@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 class StudentsController extends Controller
 {
 
+    /*
+     * Lists
+        * Arithmetic
+        * logs
+        * Graphs
+        * Unit testing
+    */
+
     public function index() {
         $students = Students::latest()->get();
         return view('students.welcome',['students'=>$students]);

@@ -35,27 +35,32 @@
                 @method('post')
                 <div>
                     <label for="subject_1">Subject #1:</label>
-                    <input type="number" class="large_font" name="subject_1" placeholder="86">
+                    <input type="number" step="0.01" min="70" max="100"
+                    {{-- pattern="\b\d{1,3\b}" --}}
+                    maxlength="3"
+                    class="large_font" name="subject_1" placeholder="86">
                 </div>
 
                 <div>
                     <label for="subject_2">Subject #2:</label>
-                    <input type="number" name="subject_2" placeholder="90">
+                    <input type="number" step="0.01" min="70" max="100"
+                    name="subject_2" placeholder="90"                     maxlength="3"
+                    >
                 </div>
 
                 <div>
                     <label for="subject_3">Subject #3:</label>
-                    <input type="number" name="subject_3" placeholder="99">
+                    <input type="number" step="0.01" min="70" max="100"  name="subject_3" placeholder="99" maxlength="3">
                 </div>
 
                 <div>
                     <label for="subject_4">Subject #4:</label>
-                    <input type="number" name="subject_4" placeholder="100">
+                    <input type="number" step="0.01" min="70" max="100"  name="subject_4" placeholder="100"                     maxlength="3">
                 </div>
 
                 <div>
                     <label for="subject_5">Subject #5:</label>
-                    <input type="number" name="subject_5" placeholder="100">
+                    <input type="number" step="0.01" min="70" max="100"  name="subject_5" placeholder="100"                     maxlength="3">
                 </div>
                     <button type="submit">CREATE</button>
                 <br>

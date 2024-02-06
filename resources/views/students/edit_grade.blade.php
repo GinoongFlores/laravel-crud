@@ -17,31 +17,25 @@
                     @csrf
                     @method('post')
                 <div>
-                    <label for="first_name">Subject 1:</label>
-                    <input type="number" name="subject_1" placeholder="First Name" value="{{ $grade->subject_1 }}">
+                    <label for="subject_1">Subject 1:</label>
+                    <input type="number" name="subject_1" placeholder="100" value="{{ $grade->subject_1 }}" step="0.01" min="70" max="100" maxlength="3">
                 </div>
-
                 <div>
-                    <label for="last_name">Subject 2:</label>
-                    <input type="number" name="subject_2" placeholder="Last Name" value="{{ $grade->subject_2 }}">
+                    <label for="subject_2">Subject 2:</label>
+                    <input type="number" name="subject_2" placeholder="99" value="{{ $grade->subject_2 }}" step="0.01" min="70" max="100" maxlength="3">
                 </div>
-
                 <div>
-                    <label for="email">Subject 3:</label>
-                    <input type="number" name="subject_3" placeholder="email"
-                    value="{{ $grade->subject_3 }}">
+                    <label for="subject_3">Subject 3:</label>
+                    <input type="number" name="subject_3" placeholder="99" value="{{ $grade->subject_3 }}" step="0.01" min="70" max="100" maxlength="3">
                 </div>
-
                 <div>
-                    <label for="course">Subject 4::</label>
-                    <input type="number" name="subject_4" placeholder="BS Information Technology"
-                    value="{{ $grade->subject_4 }}"
+                    <label for="subject_4">Subject 4:</label>
+                    <input type="number" name="subject_4" placeholder="100" value="{{ $grade->subject_4 }}"
                     >
                 </div>
                 <div>
-                    <label for="course">Subject 5::</label>
-                    <input type="number" name="subject_5" placeholder="BS Information Technology"
-                    value="{{ $grade->subject_5 }}"
+                    <label for="subject5">Subject 5::</label>
+                    <input type="number" name="subject_5" placeholder="88" value="{{ $grade->subject_5 }}" step="0.01" min="70" max="100" maxlength="3""
                     >
                 </div>
                     <div style="display: flex; flex-direction: column; gap:1rem;">

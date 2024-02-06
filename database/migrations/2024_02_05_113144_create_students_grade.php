@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('student_id')->constrained('students');
-            $table->integer('subject_1');
-            $table->integer('subject_2');
-            $table->integer('subject_3');
-            $table->integer('subject_4');
-            $table->integer('subject_5');
+            $table->foreignId('student_id')->constrained('students');
+            $table->decimal('subject_1', 8, 2)->default(0);
+            $table->decimal('subject_2', 8, 2)->default(0);
+            $table->decimal('subject_3', 8, 2)->default(0);
+            $table->decimal('subject_4', 8, 2)->default(0);
+            $table->decimal('subject_5', 8, 2)->default(0);
             $table->decimal('average', 8, 2)->default(0);
             $table->timestamps();
         });

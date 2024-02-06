@@ -11,11 +11,11 @@ class StudentsGradesController extends Controller
 
     public function store_grades(Request $request) {
         $validatedGrade = $request->validate([
-            'subject_1' => 'required|numeric',
-            'subject_2' => 'required|numeric',
-            'subject_3' => 'required|numeric',
-            'subject_4' => 'required|numeric',
-            'subject_5' => 'required|numeric',
+            'subject_1' => 'required|numeric|between:70,100',
+            'subject_2' => 'required|numeric|between:70,100',
+            'subject_3' => 'required|numeric|between:70,100',
+            'subject_4' => 'required|numeric|between:70,100',
+            'subject_5' => 'required|numeric|between:70,100',
         ]);
 
         $grades = [
@@ -45,11 +45,11 @@ class StudentsGradesController extends Controller
 
     public function update_grades(Grades $grade, Request $request) {
         $validatedGrade = $request->validate([
-            'subject_1' => 'required|numeric',
-            'subject_2' => 'required|numeric',
-            'subject_3' => 'required|numeric',
-            'subject_4' => 'required|numeric',
-            'subject_5' => 'required|numeric',
+            'subject_1' => 'required|numeric|between:70,100',
+            'subject_2' => 'required|numeric|between:70,100',
+            'subject_3' => 'required|numeric|between:70,100',
+            'subject_4' => 'required|numeric|between:70,100',
+            'subject_5' => 'required|numeric|between:70,100',
         ]);
 
         $gradesArray = [

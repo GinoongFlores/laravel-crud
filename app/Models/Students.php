@@ -17,4 +17,8 @@ class Students extends Model
         'email',
         'course',
     ];
+
+    public function grades() {
+        return $this->hasMany(Grades::class);
+    }
 }

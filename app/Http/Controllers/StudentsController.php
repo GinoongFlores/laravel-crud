@@ -64,7 +64,8 @@ class StudentsController extends Controller
     }
 
     public function delete(Students $student) {
-        $student->delete();
+        $student->grades()->delete(); // delete the grades of the student
+        $student->delete(); // delete the selected student
         return redirect(route('student.index'))->with('success','Student deleted successfully!');
     }
 }

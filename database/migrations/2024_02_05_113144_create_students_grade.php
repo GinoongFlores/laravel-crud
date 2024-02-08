@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('grades', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('student_id')->constrained('students');
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('students_id');
+            $table->foreign('students_id')->references('id')->on('students'); // This is the foreign key
             $table->decimal('subject_1', 8, 2)->default(0);
             $table->decimal('subject_2', 8, 2)->default(0);
             $table->decimal('subject_3', 8, 2)->default(0);
@@ -29,6 +30,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('grade');
+        Schema::table('grades', function(Blueprint $table) {
+            $table->dropForeign(['students_id']);
+        });
+
+        Schema::dropIfExists('grades');
     }
 };

@@ -16,6 +16,7 @@
     <body>
 
         <main>
+            @include('students.navbar')
             <div class="student_container" style="{{ (session()->has('success') || $errors->any()) ? 'display: block' : 'display: none' }}">
                 <div class="student_message">
                     @if (session()->has('success'))
@@ -62,7 +63,7 @@
                         </form>
                         <a href="{{ url('/grade/create') }}">
                             <button>
-                                CALCULATE GRADE AVERAGE
+                                VIEW STUDENT GRADES
                                 </button>
                         </a>
                 </div>
@@ -76,8 +77,8 @@
                                 <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Course</th>
-                                <th>Created At</th>
                                 <th>Edit</th>
+                                <th>Add Grade</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -89,9 +90,12 @@
                                 <td>{{ $student->last_name }}</td>
                                 <td>{{ $student->email }}</td>
                                 <td>{{ $student->course }}</td>
-                                <td>{{ $student->created_at->format('Y-m-d h:i:s A') }}</td>
+                                {{-- <td>{{ $student->created_at->format('Y-m-d h:i:s A') }}</td> --}}
                                 <td>
-                                    <a href="{{ route('student.edit',['student' => $student]) }}" class="edit_btn">Edit</a>
+                                    <a href="{{ route('student.edit', ['student' => $student->id])}}" class="edit_btn">Edit</a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('student.grade.input', ['student' => $student->id])}}" class="edit_btn">Add Grade</a>
                                 </td>
                                 <td>
                                     <form method="post" action="{{ route('student.delete', ['student'=> $student]) }}">

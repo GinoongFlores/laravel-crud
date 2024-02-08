@@ -9,34 +9,34 @@
 </head>
 <body>
 
-
+<main>
+    @include('students.navbar')
     <div class="student_message" style="{{
         (session()->has('success') || $errors->any()) ? 'display: block;' : 'display: none'
-    }}">
-        <div class="student_message">
-            @if (session()->has('success'))
-                <p class="success">
-                    Success:{{ session('success') }}
-                </p>
-            @endif
-        </div>
-        <div class="error_message">
-            @foreach ($errors->all() as $error)
-                <p class="error">
-                    Invalid: {{ $error }}
+                }}">
+            <div class="student_message">
+                @if (session()->has('success'))
+                    <p class="success">
+                        Success:{{ session('success') }}
                     </p>
-                @endforeach
-        </div>
+                @endif
+            </div>
+            <div class="error_message">
+                @foreach ($errors->all() as $error)
+                    <p class="error">
+                        Invalid: {{ $error }}
+                        </p>
+                    @endforeach
+            </div>
     </div>
 <div class="container">
-        <div class="grades_student">
+        {{-- <div class="grades_student">
             <form action="{{ route('student.grade.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('post')
                 <div>
                     <label for="subject_1">Subject #1:</label>
                     <input type="number" step="0.01" min="70" max="100"
-                    {{-- pattern="\b\d{1,3\b}" --}}
                     maxlength="3"
                     class="large_font" name="subject_1" placeholder="86">
                 </div>
@@ -73,13 +73,17 @@
                         </button>
                 </a>
             </div>
-        </div>
+        </div> --}}
 
     <div class="read_students">
         <table id="studentsTable">
+            <h2>Lists of Students Grades</h2>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Student ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Grade ID</th>
                     <th>Subject #1</th>
                     <th>Subject #2</th>
                     <th>Subject #3</th>
@@ -93,6 +97,9 @@
             <tbody>
             @foreach ($grades as $grade)
                 <tr>
+                    <td>{{ $grade->students_id }}</td>
+                    <td>{{ $grade->student->first_name }}</td>
+                    <td>{{ $grade->student->last_name }}</td>
                     <td>{{ $grade->id }}</td>
                     <td>{{ $grade->subject_1 }}</td>
                     <td>{{ $grade->subject_2 }}</td>
@@ -101,7 +108,7 @@
                     <td>{{ $grade->subject_5 }}</td>
                     <td>{{ $grade->average }}</td>
                     <td>
-                        <a href={{ route('student.grade.edit', ['grade'=>$grade]) }} class="edit_btn">
+                        <a href={{ route('student.grade.input', ['student'=>$grade->students_id]) }} class="edit_btn">
                             Edit
                         </a>
                     </td>
@@ -116,8 +123,14 @@
             </tbody>
             @endforeach
         </table>
+        <a href="{{ url('/') }}">
+            <button>
+                BACK
+                </button>
+        </a>
     </div>
 </div>
+</main>
 
 </body>
 </html>

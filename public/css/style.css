@@ -4,6 +4,35 @@
     box-sizing: border-box;
 }
 
+/* nav */
+
+nav {
+    padding: 1rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+nav ul li a:hover {
+    text-decoration: underline;
+}
+nav ul li a:active {
+    color: #1a9c00;
+}
+
+nav ul li a:visited {
+    color: #007780;
+}
+
 body {
     font-family: "figtree", sans-serif;
 }
@@ -22,21 +51,23 @@ body {
 }
 
 .container_edit {
-    gap: 1rem;
-    padding: 1rem;
-    margin: 0 auto;
-    height: 100vh;
-    width: 100%;
+    gap: 1.2rem;
+    /* margin: 0 auto; */
+    /* width: 100%; */
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.form_edit {
-    width: 550px;
+.read_students {
+    justify-self: baseline;
+    align-self: baseline;
 }
+
+/* .form_edit form {
+    width: 600px;
+} */
 
 .card {
     display: flex;
@@ -103,7 +134,7 @@ form label {
 
 /* table */
 #studentsTable {
-    max-width: 500px;
+    /* max-width: 500px; */
     width: 100%;
     margin: 1rem 0;
     border-collapse: collapse;

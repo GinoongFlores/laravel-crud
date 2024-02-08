@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\StudentsGradesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // create a route to store the data
 Route::post('/create', [StudentsController::class, 'store']);
+Route::post('/grade/create', [StudentsGradesController::class, 'store_grades']);
 
 // create a route to update the data
 Route::get('/fetch/{id}', [StudentsController::class, 'fetchStudent']);

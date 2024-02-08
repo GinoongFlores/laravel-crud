@@ -16,4 +16,16 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_the_application_returns_a_successful_response_for_grades(): void
+    {
+        $response = $this->get('/grade/create');
+        $response->assertStatus(200);
+    }
+
+    // public function test_the_application_returns_a_successful_response_for_grades_edit(): void
+    // {
+    //     $response = $this->get('/grade/12/edit');
+    //     $response->assertStatus(200);
+    // }
 }

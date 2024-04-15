@@ -9,10 +9,16 @@ class Students extends Model
 {
     use HasFactory;
 
+    protected $table = 'students';
+
     protected $fillable = [
         'first_name',
         'last_name',
         'email',
-        'course'
+        'course',
     ];
+
+    public function grades() {
+        return $this->hasMany(Grades::class);
+    }
 }

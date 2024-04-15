@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\StudentsGradesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,23 @@ use App\Http\Controllers\StudentsController;
 //     return view('students.welcome');
 // });
 
-Route::get('/', 'StudentsController@index')->name('students.index');
 
-Route::get('/student', [StudentsController::class, 'index'])->name(('student.index'));
+Route::get('/', [StudentsController::class, 'index'])->name(('student.index'));
+
+// students grades
+Route::get('/grade/create', [StudentsGradesController::class, 'create_grades'])->name(('student.grade'));
+Route::post('/grade', [StudentsGradesController::class, 'store_grades'])->name(('student.grade.store'));
+
+// add grades
+Route::get('/grade/{student}/add', [StudentsGradesController::class, 'input_grades'])->name(('student.grade.input'));
+Route::post('/grade/{student}', [StudentsGradesController::class, 'add_grades'])->name(('student.grade.add'));
+// delete grades
+Route::delete('/grade/{grade}/delete', [StudentsGradesController::class, 'delete_grades'])->name(('student.grade.delete'));
+
+// edit & update grades
+Route::get('/grade/{grade}/edit', [StudentsGradesController::class, 'edit_grades'])->name(('student.grade.edit'));
+Route::put('/grade/{grade}', [StudentsGradesController::class, 'update_grades'])->name(('student.grade.update'));
+
 // show the form to create a new student
 Route::get('/student/create', [StudentsController::class, 'create'])->name(('student.create'));
 Route::post('/student', [StudentsController::class, 'store'])->name(('student.store'));

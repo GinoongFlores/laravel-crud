@@ -4,6 +4,35 @@
     box-sizing: border-box;
 }
 
+/* nav */
+
+nav {
+    padding: 1rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+}
+nav ul li a:hover {
+    text-decoration: underline;
+}
+nav ul li a:active {
+    color: #1a9c00;
+}
+
+nav ul li a:visited {
+    color: #007780;
+}
+
 body {
     font-family: "figtree", sans-serif;
 }
@@ -11,31 +40,34 @@ body {
 .container {
     width: 100%;
     padding: 1rem;
+    height: 100vh;
+    gap: 2rem;
+
     display: flex;
     justify-content: center;
     align-items: baseline;
     justify-content: center;
     flex-wrap: wrap;
-    height: 100vh;
-    gap: 2rem;
 }
 
 .container_edit {
-    padding: 1rem;
-    margin: 0 auto;
-    height: 100vh;
-    width: 100%;
+    gap: 1.2rem;
+    /* margin: 0 auto; */
+    /* width: 100%; */
 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
 }
 
-.form_edit {
-    width: 550px;
+.read_students {
+    justify-self: baseline;
+    align-self: baseline;
 }
+
+/* .form_edit form {
+    width: 600px;
+} */
 
 .card {
     display: flex;
@@ -102,8 +134,8 @@ form label {
 
 /* table */
 #studentsTable {
-    width: 500px;
-    min-width: 100%;
+    /* max-width: 500px; */
+    width: 100%;
     margin: 1rem 0;
     border-collapse: collapse;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

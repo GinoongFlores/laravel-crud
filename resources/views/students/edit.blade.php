@@ -10,8 +10,8 @@
 <body>
 
     <main>
+        @include('students.navbar')
         <div class="container_edit">
-            <h1>Edit a Student</h1>
             <div class="form_edit">
                 <form method="post" action="{{ route('student.update', ['student'=>$student]) }}">
                     @csrf
@@ -39,8 +39,8 @@
                     >
                 </div>
                     <div style="display: flex; flex-direction: column; gap:1rem;">
-                    <button type="submit" value="update">CREATE</button>
-                    <a href="{{ url('/student') }}" class="btn">BACK</a>
+                    <button type="submit" value="update">UPDATE</button>
+                    <a href="{{ url('/') }}" class="btn">BACK</a>
                     </div>
                 </form>
             </div>
